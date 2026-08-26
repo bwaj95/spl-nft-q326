@@ -1,0 +1,33 @@
+{
+  "name": "Onam Mahabali Homecoming",
+  "symbol": "MAHABALI",
+  "description": "A celebratory Solana token inspired by the legendary homecoming of King Mahabali and the Onam ideals of prosperity, equality, generosity, and community.",
+  "image": "https://raw.githubusercontent.com/bwaj95/spl-nft-q326/main/assets/mahabali-homecoming.png",
+  "attributes": [
+    {
+      "trait_type": "Festival",
+      "value": "Onam"
+    },
+    {
+      "trait_type": "Theme",
+      "value": "Mahabali Homecoming"
+    },
+    {
+      "trait_type": "Network",
+      "value": "Solana Devnet"
+    },
+    {
+      "trait_type": "Year",
+      "value": "2026"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://raw.githubusercontent.com/bwaj95/spl-nft-q326/main/assets/mahabali-homecoming.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image"
+  }
+}
