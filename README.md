@@ -2,104 +2,203 @@
 
 > **ഓണാശംസകൾ! Onashamsakal!** King Mahabali has arrived on Solana devnet. 👑
 
-**MAHABALI** is a festive fungible SPL token created for Onam 2026 as part of the **Turbin3 Q3 Builders Cohort**. The project follows the complete token lifecycle: creating a Mint, attaching Metaplex metadata and original artwork, minting the supply, creating Associated Token Accounts, and transferring tokens to another wallet.
-
 ![Onam Mahabali Homecoming](assets/mahabali-homecoming.png)
 
-## Devnet deployment
+![Maveli's Golden Homecoming](assets/maveli-golden-backwaters.png)
 
-| Item | Value |
+# Turbin3 Week 1 — SPL Token and MPL Core NFT
+
+This repository contains my Week 1 assignment for the **Turbin3 Q3 Builders Cohort**. Each assignment is implemented as a standalone TypeScript integration script that creates or updates fresh state on **Solana devnet**, confirms every transaction, fetches the resulting accounts, and asserts the expected state.
+
+The assets use an Onam theme: the fungible token represents King Mahabali's homecoming, while the NFT depicts Maveli crossing Kerala's golden backwaters.
+
+## Assignment status
+
+| Task | Status | Command |
+|---|---|---|
+| 1. Mint and transfer a custom SPL token | ✅ Completed | `npm run assignment-1` |
+| 2. Mint an NFT using MPL Core | ✅ Completed | `npm run assignment-2` |
+| 3. Update the NFT's name and metadata as update authority | ✅ Completed | `npm run assignment-3` |
+
+## Execution evidence
+
+Each command performs real devnet transactions and finishes only after its newly created or updated state passes all assertions.
+
+### Assignment 1 — SPL token
+
+![Assignment 1 completed successfully](docs/assignment-1-success.png)
+
+### Assignment 2 — MPL Core NFT
+
+![Assignment 2 completed successfully](docs/assignment-2-success.png)
+
+### Assignment 3 — NFT update
+
+![Assignment 3 completed successfully](docs/assignment-3-success.png)
+
+## Assignment 1: mint and transfer an SPL token
+
+`assignment_1.ts` executes the complete token flow in one run:
+
+1. Creates and initializes a fresh SPL Mint with six decimals.
+2. Creates a Metaplex Token Metadata PDA for the Mint.
+3. Creates the authority's Associated Token Account.
+4. Mints `1,000,000,000 MAHABALI` into that ATA.
+5. Creates the recipient's ATA and transfers `1,000,000 MAHABALI`.
+6. Fetches the new Mint and both ATAs and asserts the supply and balances.
+
+### Token accounts
+
+| Field | Value |
 |---|---|
-| Network | Solana Devnet |
 | Token name | Onam Mahabali Homecoming |
 | Symbol | `MAHABALI` |
-| Mint | [`365yusi2RTm5JUDBfSUCYrmzsvR34vr5ohWiYbo542hf`](https://explorer.solana.com/address/365yusi2RTm5JUDBfSUCYrmzsvR34vr5ohWiYbo542hf?cluster=devnet) |
+| Mint | [`AUHQq2Pq2y9f17kurRxb2NqeK62yNrgWG6V9m3cs3oQh`](https://explorer.solana.com/address/AUHQq2Pq2y9f17kurRxb2NqeK62yNrgWG6V9m3cs3oQh?cluster=devnet) |
 | Decimals | `6` |
 | Minted supply | `1,000,000,000 MAHABALI` |
-| Transferred amount | `1,000,000 MAHABALI` |
-| Sender ATA | [`FTF4R92LRfWP5UqujmHiBQyKZ8p5MxEVmHi8eeM1BNND`](https://explorer.solana.com/address/FTF4R92LRfWP5UqujmHiBQyKZ8p5MxEVmHi8eeM1BNND?cluster=devnet) |
-| Recipient wallet | [`3fwX7iKGuzJHgs6iufnLej1BS8T7M85JszbJk7c7sYgD`](https://explorer.solana.com/address/3fwX7iKGuzJHgs6iufnLej1BS8T7M85JszbJk7c7sYgD?cluster=devnet) |
-| Recipient ATA | [`7WSsZ2fheyatfqvG44LNMJi2EvAVQAkSCz4Lqb4Q3m3b`](https://explorer.solana.com/address/7WSsZ2fheyatfqvG44LNMJi2EvAVQAkSCz4Lqb4Q3m3b?cluster=devnet) |
+| Authority | `4k5kaSZ796EWM8hNfXuhcdVbZ2MNWonTbRmsshWDBX7b` |
+| Authority ATA | [`CJK4PC8kaP2ngZemZkB4uh49DaUJf78KntWUvqrjqSnf`](https://explorer.solana.com/address/CJK4PC8kaP2ngZemZkB4uh49DaUJf78KntWUvqrjqSnf?cluster=devnet) |
+| Recipient | `3fwX7iKGuzJHgs6iufnLej1BS8T7M85JszbJk7c7sYgD` |
+| Recipient ATA | [`HRboRWZ6rMZwxFTsPZ8bcPU1u2GGp7iYMkoHzx7rirX5`](https://explorer.solana.com/address/HRboRWZ6rMZwxFTsPZ8bcPU1u2GGp7iYMkoHzx7rirX5?cluster=devnet) |
+| Final authority balance | `999,000,000 MAHABALI` |
+| Final recipient balance | `1,000,000 MAHABALI` |
 
-## Verified transactions
+### Token transactions
 
-| Step | Transaction |
+| Operation | Devnet transaction |
 |---|---|
-| 1. Create and initialize Mint | [`5mfY2zvC...xkayZ2CD`](https://explorer.solana.com/tx/5mfY2zvCZx3Lr1Gq8cWRLvwWWiK5GdAcQ4VcZFpqupT4Hd4QaHdzTsgPCduTiHF1agbfBUDn8PH8okSNxkayZ2CD?cluster=devnet) |
-| 2. Create Metaplex metadata account | [`62RjAPeM...Ve3v2dv`](https://explorer.solana.com/tx/62RjAPeMSSacvu5F6cyq7nemNsVK6oRAGinD7TtufbfqiG38X4zLpQeaux2G5ZipiCQ7gjy1awDeQuPodVe3v2dv?cluster=devnet) |
-| 3. Create sender ATA and mint supply | [`2JsoedSC...qKMBtX1`](https://explorer.solana.com/tx/2JsoedSCrubjMoS8PHwaiMv8Vy6b4A1cJZHk8USeRPAHcGH6bPf6y4Dbt9sY1ft6KJvBmyZxGha9wRhbVqKMBtX1?cluster=devnet) |
-| 4. Create recipient ATA and transfer tokens | [`5SmEeAup...LeKPjWJi`](https://explorer.solana.com/tx/5SmEeAupwdDeKNfQgvEGaKmjaRwg6ArkLgKW6oCHtLg6nLZ4ZciWX4PELUYojb6YGHqDe68Eo9RsYvXQLeKPjWJi?cluster=devnet) |
+| Create and initialize Mint | [`3JpDNiww...Gkw7wn`](https://explorer.solana.com/tx/3JpDNiwwyqcp8GdhL7pf63w5HWdKo7arEaEYrCepALnnYHoCkxrySBsfxxCpCoa4H2wr7Ftumtk7hAuXNkGkw7wn?cluster=devnet) |
+| Create Metaplex metadata | [`2VmCdHtc...MnHSjCN`](https://explorer.solana.com/tx/2VmCdHtcZsKjBzoS9aYURoBzctaWnTcqQqe7efgQH3CPUizcLc9Lu2LSFbTo2q72MbdB1wvDNLa95rgQ4MnHSjCN?cluster=devnet) |
+| Create authority ATA and mint supply | [`dAwfj1Jx...NNXS98q`](https://explorer.solana.com/tx/dAwfj1JxQ4n53sd9X5GASncaQePNwtatRi4rg4VEb4vYBz4PUjYdDPjHBC28GPNCHp2MdSVD64zP6yH9NNXS98q?cluster=devnet) |
+| Create recipient ATA and transfer | [`5VBEsJ1m...PAnLBQ45`](https://explorer.solana.com/tx/5VBEsJ1mwEfMwwAkqiSEmqHK3LaaSsxtKYDgcSKayZzTZbo1vK1iLHUH4FTjHNZVLY77km5gXAXVKp5fPAnLBQ45?cluster=devnet) |
 
+The verification step asserts:
 
-# scripts-solana
-
-Scripts for creating SPL tokens and NFTs on Solana devnet.
-
----
-
-## Setup
-
-### 1. Add your wallet
-
-Place your devnet wallet keypair file at the project root:
-
-```
-root/
-└── devnet-wallet.json   ← here
+```text
+Mint supply       = 1,000,000,000 MAHABALI
+Authority balance =   999,000,000 MAHABALI
+Recipient balance =     1,000,000 MAHABALI
 ```
 
-It should be a JSON array of numbers, e.g. `[174, 23, ...]`.
+## Assignment 2: create an NFT using MPL Core
 
-### 2. Install dependencies
+`assignment_2.ts` performs the complete Core creation flow:
+
+1. Uploads the PNG artwork to Irys.
+2. Uploads a new JSON metadata document referencing the artwork.
+3. Generates a new Core Asset signer and creates the Asset on devnet.
+4. Fetches the newly created Asset and asserts its name, URI, owner, and update authority.
+5. Saves its public data to `assignment_state.json` for Assignment 3.
+
+### Created Core Asset
+
+| Field | Value |
+|---|---|
+| Asset | [`D54fwMX51KEwFNEBzYjknEDu9gWPb3XD1YXNCqd5jq7N`](https://explorer.solana.com/address/D54fwMX51KEwFNEBzYjknEDu9gWPb3XD1YXNCqd5jq7N?cluster=devnet) |
+| Original name | Maveli Across the Golden Backwaters |
+| Owner | `4k5kaSZ796EWM8hNfXuhcdVbZ2MNWonTbRmsshWDBX7b` |
+| Update authority | `4k5kaSZ796EWM8hNfXuhcdVbZ2MNWonTbRmsshWDBX7b` |
+| Image | [View original artwork](https://gateway.irys.xyz/C7nSTVQ4c5X1RP8TNWXNzLY3VtZFY7W4jwNgzoeBbMMn) |
+| Original metadata | [View original JSON](https://gateway.irys.xyz/6Fsc1bRSbnEfywewRjwDR2pXGDdTKMevLeh99iW4n7Ez) |
+| Create transaction | [`2Y1A6TZD...VJAq4XU`](https://explorer.solana.com/tx/2Y1A6TZDUxgcfpKYNAafg6NKzzFfkiPhkZZrUtq2x19yKef8HCQnX8oftPYanGENRTkNQdFENAnCEPx8dVJAq4XU?cluster=devnet) |
+
+MPL Core represents the NFT with a single Asset account. The account stores the asset's owner, update authority, name, and metadata URI; it does not require an SPL Mint, ATA, or separate Token Metadata PDA.
+
+## Assignment 3: update the NFT
+
+`assignment_3.ts` reads the Asset produced by Assignment 2 and:
+
+1. Fetches its current on-chain state.
+2. Verifies that the connected wallet matches its update authority.
+3. Uploads revised JSON metadata to a new Irys URI.
+4. Calls the MPL Core `update` instruction with a new name and URI.
+5. Fetches the Asset again and asserts the update while confirming that its address, owner, and update authority remain unchanged.
+
+### Update result
+
+| Field | Before | After |
+|---|---|---|
+| Asset address | `D54fwMX5...NCqd5jq7N` | Unchanged |
+| Owner | `4k5kaSZ7...sshWDBX7b` | Unchanged |
+| Update authority | `4k5kaSZ7...sshWDBX7b` | Unchanged |
+| Name | Maveli Across the Golden Backwaters | Maveli's Golden Homecoming |
+| Metadata URI | [Original JSON](https://gateway.irys.xyz/6Fsc1bRSbnEfywewRjwDR2pXGDdTKMevLeh99iW4n7Ez) | [Updated JSON](https://gateway.irys.xyz/6gjSQ8ZdSRuutuHhtpkPsS4jCEQiR4WBh3J1TuTmSC2K) |
+
+**Update transaction:** [`25gNHpBg...am7w6BKj`](https://explorer.solana.com/tx/25gNHpBggfWZPbcUnLei8ZZpzzHrda3Bc3Vc9uMov8rSDYtHF4eXP2aXoZkoR4HbTwJkoEYo1jXvhKkMam7w6BKj?cluster=devnet)
+
+The original off-chain JSON remains available at its original content-addressed URI. The Core update transaction creates the on-chain evidence connecting the unchanged Asset address to the revised name and new metadata URI.
+
+## Running the assignments
+
+### Prerequisites
+
+- Node.js 20+
+- A funded Solana devnet wallet
+- The wallet stored locally as `devnet-wallet.json`
+
+The wallet file contains private-key material and is excluded by `.gitignore`.
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
+Run each assignment in order:
+
 ```bash
-npm install --save-dev @types/node ts-node typescript
+npm run assignment-1
+npm run assignment-2
+npm run assignment-3
 ```
 
-### 3. Add your image
+Run the complete end-to-end sequence with:
 
-Place your image at the project root.
+```bash
+npm test
+```
 
+Assignments 1 and 2 create fresh on-chain accounts every time they run and consume devnet SOL for rent and transaction fees. Assignment 3 depends on the `assignment_state.json` generated by the latest successful Assignment 2 run. Therefore, `npm test` also creates a new Mint and Core Asset rather than replaying the addresses documented above.
+
+If the public devnet RPC is rate-limited, an alternative endpoint can be supplied:
+
+```bash
+SOLANA_RPC_URL="https://your-devnet-rpc.example" npm run assignment-1
 ```
-root/
-└── image.jpeg   ← here
+
+## Project structure
+
+```text
+assets/
+└── maveli-golden-backwaters.png
+
+src/
+├── assignment/
+│   ├── assignment_1.ts
+│   ├── assignment_2.ts
+│   ├── assignment_3.ts
+│   └── assignment_state.json
+├── nft/
+│   ├── nft_image.ts
+│   ├── nft_metadata.ts
+│   └── nft_mint.ts
+└── spl/
+    ├── spl_init.ts
+    ├── spl_metadata.ts
+    ├── spl_mint.ts
+    └── spl_transfer.ts
 ```
+
+## Technologies
+
+- TypeScript
+- Solana Kit
+- SPL Token Program
+- Metaplex Token Metadata
+- Metaplex Core
+- Umi
+- Irys
 
 ---
 
-> Before running the scripts, go through these docs:
-> - [Solana token docs](https://solana.com/docs/tokens) — mint accounts, token accounts, and ATAs
-> - [Solana Kit](https://www.solanakit.com/) — the JS SDK used for building and sending transactions
-> - [Metaplex Token Metadata](https://www.metaplex.com/docs/smart-contracts/token-metadata) — attaching metadata to SPL tokens
-> - [Metaplex Core](https://www.metaplex.com/docs/smart-contracts/core) — the NFT standard used in the NFT scripts
-
-## SPL Token
-
-Uses **@solana/kit** and **@solana-program/token** for transactions, and **mpl-token-metadata** via UMI for on-chain metadata.
-
-| Script | Command | What it does |
-|---|---|---|
-| `spl_init.ts` | `npm run spl:init` | Creates a new mint account |
-| `spl_metadata.ts` | `npm run spl:metadata` | Attaches a name, symbol, and URI to the mint |
-| `spl_mint.ts` | `npm run spl:mint` | Creates your associated token account and mints tokens into it |
-| `spl_transfer.ts` | `npm run spl:transfer` | Sends tokens to another wallet i.e ata to ata |
-
-Run them in order. Each script logs the addresses/signatures you'll need to paste into the next one.
-
----
-
-## NFT
-
-Uses **@solana/kit** and **mpl-core** via UMI. Images and metadata are stored on Irys (decentralized storage).
-
-| Script | Command | What it does |
-|---|---|---|
-| `nft_image.ts` | `npm run nft:image` | Uploads your image to Irys, logs the image URI |
-| `nft_metadata.ts` | `npm run nft:metadata` | Builds the metadata JSON and uploads it, logs the metadata URI |
-| `nft_mint.ts` | `npm run nft:mint` | Mints the NFT on-chain using the metadata URI |
-
-Run them in order. Paste the URI logged by each step into the next script before running it.
+Built for the Turbin3 Q3 Builders Cohort on Solana devnet.

@@ -25,13 +25,19 @@ umi.use(signerIdentity(signer));
   try {
     //change the image uri to your image uri obtained from nft_image.ts
     const image =
-      "https://gateway.irys.xyz/5EDyiNrMWfhjdsEwXLrwkHPwZoZB2m1A2Kudrfxo1tpr";
+      "https://gateway.irys.xyz/9882XmqWMewHHssJz9ULUXZ6MoyEf8qieJCcdfL8nFaa";
 
     //json scheme : https://www.metaplex.com/docs/smart-contracts/core/json-schema
     //change the metadata
-    // const metadata =
-    // const myUri =
-    // console.log(`metadata uri: ${myUri} `);
+    const metadata = {
+      name: "Mahabali Across the Golden Backwaters",
+      description: "King Mahabali returns across Kerala’s golden backwaters, carrying a luminous seed of prosperity, generosity, and renewal. Created as a joyful one-of-one Onam 2026 collectible on Solana.",
+      image,
+      category: "image"
+    };
+
+    const myUri = await umi.uploader.uploadJson(metadata);
+    console.log(`metadata uri: ${myUri} `);
   } catch (error) {
     console.log("error", error);
   }
